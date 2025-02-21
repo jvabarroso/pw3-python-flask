@@ -19,11 +19,12 @@ def home():
 # View function - função de visualização. Irá te enviar para a página
 def games():
     titulo = "CS-GO"
+    listaGames = ['Minecraft', 'GTA V', 'Red Dead Redemption 2', 'God of War Ragnarok', 'Roblox', 'Subnautica Below Zero', 'Ancestors: the humankind odyssey']
     ano = 2012
     categoria = "FPS Online"
     
     jogadores = ['iruah', 'davi_lambari', 'edsongf', 'kioto', 'black.butterfly', 'jujudopix']
-    return render_template('games.html', titulo=titulo, ano=ano, categoria=categoria, jogadores=jogadores)
+    return render_template('games.html', titulo=titulo, ano=ano, categoria=categoria, jogadores=jogadores, listaGames=listaGames)
 # A primeira variável é a que será chamada na página, enquanto a segunda é o nome da variável em que estão armazenados os dados
 
 
