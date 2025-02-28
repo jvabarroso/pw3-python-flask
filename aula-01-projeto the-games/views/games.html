@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Games</title>
+  </head>
+  <body>
+    <h1>Bem vindo à página de games!</h1>
+    <hr />
+    <p>Game mais jogado no momento:</p>
+
+    <!-- Não é recomendado usar os comentários do html nas variáveis jinja, pois a engine tenta rodar a variável dentro do comentário, dando erro -->
+    {# Exemplo de comentário no jinja2 #}
+
+    <!-- Percorrendo o dicionário com for -->
+    {%for chave, valor in game.items()%}
+    <details>
+      <summary>{{chave}}</summary>
+      <p>{{valor}}</p>
+    </details>
+    {%endfor%}
+      <!-- Chamo de "items" a junção de chave e valor -->
+        
+
+
+    <!-- Para importar as variáveis do python no html, é usado chaves duplas + o nome da variável -->
+    <!-- A ferramenta utilizada é o jinja 2, uma engine que nos ajuda a injetar as variáveis do python no html. É uma das ferramentas do Flask -->
+    <p>O jogo {{game['Título']}} tem {{2025 - game['Ano']}} anos.</p>
+    <hr/>
+    <p>Estão jogando no momento:</p>
+    <ol>
+      {% for jogador in jogadores %}
+      <li>{{jogador}}</li>
+      {% endfor %}
+    </ol>
+
+    <hr />
+    <!-- Criar uma seção para exibir uma lista de outros games mais jogados no momento. Deve possuir 7 games e ser ordenada -->
+    <!-- Lista não ordenada é de ponto e ordenada é com numerozinho -->
+
+    <h3>Outros jogos que estão sendo jogados:</h3>
+    <ol>
+      {%for jogos in listaGames %}
+      <li>{{jogos}}</li>
+      {%endfor%}
+    </ol>
+    <hr />
+    <a href="/">Voltar para página principal</a>
+  </body>
+</html>

@@ -13,15 +13,21 @@
     <!-- Não é recomendado usar os comentários do html nas variáveis jinja, pois a engine tenta rodar a variável dentro do comentário, dando erro -->
     {# Exemplo de comentário no jinja2 #}
 
-    <ul>
-      <li>Título: {{titulo}}</li>
-      <li>Ano de lançamento: {{ano}}</li>
-      <li>Categoria: {{categoria}}</li>
-    </ul>
+    <!-- Percorrendo o dicionário com for -->
+    {%for chave, valor in game.items()%}
+    <details>
+      <summary>{{chave}}</summary>
+      <p>{{valor}}</p>
+    </details>
+    {%endfor%}
+      <!-- Chamo de "items" a junção de chave e valor -->
+        
+
+
     <!-- Para importar as variáveis do python no html, é usado chaves duplas + o nome da variável -->
     <!-- A ferramenta utilizada é o jinja 2, uma engine que nos ajuda a injetar as variáveis do python no html. É uma das ferramentas do Flask -->
-    <p>O jogo {{titulo}} tem {{2025 - ano}} anos.</p>
-    <hr />
+    <p>O jogo {{game['Título']}} tem {{2025 - game['Ano']}} anos.</p>
+    <hr/>
     <p>Estão jogando no momento:</p>
     <ol>
       {% for jogador in jogadores %}
@@ -29,15 +35,23 @@
       {% endfor %}
     </ol>
 
-    <hr/>
-    <!-- Criar uma seção para exibir uma lista de outros games mais jogados no momento. Deve possuir 7 games e ser não ordenada -->
+    <hr />
+    <!-- Criar uma seção para exibir uma lista de outros games mais jogados no momento. Deve possuir 7 games e ser ordenada -->
+    <!-- Lista não ordenada é de ponto e ordenada é com numerozinho -->
 
-    <h3>Outros jogos que estão sendo jogados: </h3>
+    <h3>Outros jogos que estão sendo jogados:</h3>
     <ol>
-        {%for jogos in listaGames %}
-        <li>{{jogos}}</li>
-        {%endfor%}
+      {%for jogos in listaGames %}
+      <li>{{jogos}}</li>
+      {%endfor%}
     </ol>
+
+    <h4>Entrar no jogo: </h4>
+    <form action="{{url_for('games')}}", method="POST">
+      <label for="jogador">Jogador:</label>
+      <input type="text" name="jogador">
+      <button type="submit">Entrar</button>
+    </form>
     <hr/>
     <a href="/">Voltar para página principal</a>
   </body>
