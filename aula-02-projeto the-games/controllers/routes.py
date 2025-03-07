@@ -1,8 +1,14 @@
 from flask import render_template, request
 # Render template é o pacote responsável por carregar as páginas
+# request é um pacote responsável pelo envio de dados para as páginas. As requisições
 
 jogadores = ['iruah', 'davi_lambari', 'edsongf',
              'kioto', 'black.butterfly', 'jujudopix']
+
+gamelist = [{'Título': 'CS-GO',
+             'Ano': 2012,
+             'Categoria': 'FPS Online'}
+            ]
 
 
 def init_app(app):
@@ -19,16 +25,25 @@ def init_app(app):
     def games():
 
         # Dicionário no Python (Objeto)
-        game = {'Título': 'CS-GO',
-                'Ano': 2012,
-                'Categoria': 'FPS Online'}
-
+        # Acessando o primeiro jogo da lista de jogos. Indice 0
+        game = gamelist[0]
         listaGames = ['Minecraft', 'GTA V', 'Red Dead Redemption 2', 'God of War Ragnarok',
                       'Roblox', 'Subnautica Below Zero', 'Ancestors: the humankind odyssey']
 
         if request.method == 'POST':
-            if request.form.get('jogador'):  # Meio que a gnt colocou lá no input
+            if request.form.get('jogador'):  # O Meio que a gnt colocou lá no input
                 jogadores.append(request.form.get('jogador'))
 
         return render_template('games.html', game=game, jogadores=jogadores, listaGames=listaGames)
+
+    @app.route('/cadgames', methods=['GET', 'POST'])
+    def cadgames():
+
+        if request.method == 'POST':
+            if request.form.get('titulo') and request.form.get('ano') and request.form.get('categoria'):
+                gamelist.append({'Título': request.form.get('titulo'),
+                                 'Ano': request.form.get('ano'),
+                                 'Categoria': request.form.get('categoria')})
+        # append serve para adicionar os dados na lista
+        return render_template('cadgames.html', gamelist=gamelist)
 # A primeira variável é a que será chamada na página, enquanto a segunda é o nome da variável em que estão armazenados os dados
