@@ -1,0 +1,25 @@
+<!-- O base.html é um template base que define a estrutura comum de todas as páginas, permitindo reutilização e personalização de conteúdo específico em cada página -->
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename ='css/style.css')}}">
+    <title>The games</title>
+  </head>
+  <body>
+
+    <!-- Cabeçalho -->
+    <header style="text-align: center">The games</header>
+    <img src="{{url_for('static', filename='images/jogo.png')}}" alt="The games" style="display: flex; align-items: center;">
+    <hr/>
+     {%block content%}
+         <!-- Aqui irá o conteúdo das outras páginas -->
+     {% endblock content%}
+<footer>
+    <hr>
+    <p style="text-align: center;">Todos os direitos reservados &reg;</p>
+</footer>  
+</body>
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
+</html>
