@@ -1,1 +1,32 @@
 <!-- Fazer a rota consoles e uma console list que tenha nome, preço e país -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Consoles</title>
+</head>
+
+<body>
+    <h2>Página dos consoles!</h2>
+    <hr>
+    <form action="{{url_for('consoles')}}" method="POST">
+        <label for="">Nome do console:</label>
+        <input type="text" name="nomeConsole" required> <br>
+        <label for="">Preço do console:</label>
+        <input type="text" name="precoConsole" required> <br>
+        <label for="">País origem do console:</label>
+        <input type="text" name="paisConsole" required> <br>
+        <input type="submit" value="cadastrar">
+    </form>
+    <hr>
+    <h4>Consoles cadastrados: </h4>
+    {%for console in consolelist%}
+    Nome: <strong>{{console.Nome}}</strong><br>
+    Preço: <strong>{{console.Preço}}</strong><br>
+    País: <strong>{{console.País}}</strong><br><br>
+    {%endfor%}
+</body>
+
+</html>

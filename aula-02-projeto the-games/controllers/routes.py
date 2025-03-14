@@ -10,6 +10,9 @@ gamelist = [{'Título': 'CS-GO',
              'Categoria': 'FPS Online'}
             ]
 
+consolelist = [{'Nome' : '',
+                'Preço':'',
+                'País': ''}]
 
 def init_app(app):
     # Criando a rota principal do site:
@@ -47,3 +50,12 @@ def init_app(app):
         # append serve para adicionar os dados na lista
         return render_template('cadgames.html', gamelist=gamelist)
 # A primeira variável é a que será chamada na página, enquanto a segunda é o nome da variável em que estão armazenados os dados
+    @app.route('/consoles', methods=['GET', 'POST'])
+    def consoles():
+        console = consolelist[0]
+        if request.method == 'POST':
+            if request.form.get('nomeConsole') and request.form.get('precoConsole') and request.form.get('paisConsole'):
+                consolelist.append({'Nome': request.form.get('nomeConsole'),
+                                    'Preço': request.form.get('precoConsole'),
+                                    'País': request.form.get('paisConsole')})
+        return render_template('consoles.html', consolelist=consolelist, console=console)
