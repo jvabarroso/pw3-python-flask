@@ -1,0 +1,33 @@
+
+{%extends 'base.html' %}
+{% block content%}
+
+<h2>Controle de estoque</h2>
+
+{{gamesEmEstoque}}
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+        <th>Título</th>
+        <th>Ano</th>
+        <th>Categoria</th>
+        <th>Plataforma</th>
+        <th>Preço</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {%for game in gamesEmEstoque%}
+        <tr>
+            <td>{{game.titulo}}</td>
+            <td>{{game.ano}}</td>
+            <td>{{game.categoria}}</td>
+            <td>{{game.plataforma}}</td>
+            <td>{{game.preco}}</td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+
+{%endblock content%}

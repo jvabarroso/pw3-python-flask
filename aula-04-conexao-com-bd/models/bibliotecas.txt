@@ -1,3 +1,0 @@
-pip install pymysql 
-pip install mysqlclient - Ambos servem para fazer a conexão com o banco de dados
-pip install sqlalchemy - Executa as querys do sql
