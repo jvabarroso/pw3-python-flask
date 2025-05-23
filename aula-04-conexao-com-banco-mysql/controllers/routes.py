@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from models.database import Game
+from models.database import Game, db
 
 # Lista de jogadores
 jogadores = ['Miguel José', 'Miguel Isack', 'Leaf',
@@ -9,6 +9,8 @@ jogadores = ['Miguel José', 'Miguel Isack', 'Leaf',
 gamelist = [{'Título': 'CS-GO',
             'Ano': 2012,
              'Categoria': 'FPS Online'}]
+
+
 
 
 def init_app(app):
@@ -47,8 +49,25 @@ def init_app(app):
                                gamelist=gamelist)
         
     # Rota do crud
-    @app.route('/estoque')
-    def estoque():
+    @app.route('/estoque', methods=['GET', 'POST'])
+    # Parametro id
+    @app.route('/estoque/<int:id>')
+    # Se o id for passado, é para excluir o jogo
+    def estoque(id=None):
+        
+        if id:
+            game = Game.query.get(id)
+            db.session.delete(game)
+            db.session.commit()
+            return redirect(url_for('estoque'))
+        
+        if request.method == 'POST':
+            # Cadastrando o jogo no banco
+            # A variavel newgame que será enviada ao banco. Ela possui todas as informações do formulario
+            newgame=Game(request.form['titulo'], request.form['ano'], request.form['categoria'], request.form['plataforma'], request.form['preco'])
+            db.session.add(newgame)
+            db.session.commit()
+            return redirect(url_for('estoque'))
         
         # A ORM que estamos usando é a sql alcheemy
         # ORM é uma biblioteca que traduz o banco de dados para a máquina e vice-versa

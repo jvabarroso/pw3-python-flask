@@ -4,7 +4,22 @@
 
 <h2>Controle de estoque</h2>
 
-{{gamesEmEstoque}}
+<details>
+    <summary>
+        [ Cadastrar novo jogo ]
+    </summary>
+    <div class="col-md-4">
+        <form action="{{url_for('estoque')}}" method="POST">
+            <input type="text" name="titulo" placeholder="Título" class="form-control" required>
+            <input type="number" name="ano" placeholder="Ano" class="form-control" required>
+            <input type="text" name="categoria" placeholder="Categoria" class="form-control" required>
+            <input type="text" name="plataforma" placeholder="Plataforma" class="form-control" required>
+            <input type="number" name="preco" placeholder="Preço" class="form-control" required>
+            <input type="submit" value="Cadastrar" class="btn btn-success">
+            <input type="reset" value="Limpar" class="bnt btn-danger">
+        </form>
+    </div>
+</details>
 
 <table class="table table-bordered table-hover">
     <thead class="table-dark">
@@ -14,6 +29,7 @@
         <th>Categoria</th>
         <th>Plataforma</th>
         <th>Preço</th>
+        <th colspan="2" style="text-align: center;">Ações</th>
         </tr>
     </thead>
 
@@ -25,6 +41,8 @@
             <td>{{game.categoria}}</td>
             <td>{{game.plataforma}}</td>
             <td>{{game.preco}}</td>
+            <td><a href=""><button class="btn btn-warning">Editar</button></a></td>
+            <td><a href="{{url_for('estoque', id=game.id)}}" onclick="return confirm('Deseja realmente excluir o jogo {{game.titulo}}?')"><button class="btn btn-danger">Excluir</button></a></td>
         </tr>
         {% endfor%}
     </tbody>
