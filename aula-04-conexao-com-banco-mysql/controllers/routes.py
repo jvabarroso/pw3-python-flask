@@ -75,3 +75,23 @@ def init_app(app):
         
         gamesEmEstoque = Game.query.all()
         return render_template('estoque.html', gamesEmEstoque=gamesEmEstoque)
+
+    # Rota de edição de jogos
+    @app.route('/editar/<int:id>', methods=['GET', 'POST'])
+    def editgames(id):
+        # Busca o jogo pelo ID
+        game = Game.query.get(id)
+        
+        if request.method == 'POST':
+            # Atualiza os dados do jogo
+            game.titulo = request.form['titulo']
+            game.ano = request.form['ano']
+            game.categoria = request.form['categoria']
+            game.plataforma = request.form['plataforma']
+            game.preco = request.form['preco']
+            
+            # Salva as alterações no banco
+            db.session.commit()
+            return redirect(url_for('estoque'))
+        
+        return render_template('editgames.html', game=game)
