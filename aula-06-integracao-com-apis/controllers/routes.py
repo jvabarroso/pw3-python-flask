@@ -121,10 +121,26 @@ def init_app(app):
             db.session.commit()
             return redirect(url_for('consolesEstoque'))
         return render_template('editconsole.html', console=console)
-
-    # rota para página de API de jogos
+    
+    # Rota de API de jogos
     @app.route('/apigames', methods=['GET', 'POST'])
-    def apigames():
+    @app.route('/apigames/<int:id>', methods=['GET', 'POST'])
+    def apigames(id=None):
         url = 'https://www.freetogame.com/api/games'
         response = urllib.request.urlopen(url)
-        return response
+        apiData = response.read()
+        gameList = json.loads(apiData)
+        # Se id existir (ou seja, foi informado parâmetro)
+        if id:
+            gameInfo = []
+            for game in gameList:
+                if game['id'] == id:
+                    gameInfo = game
+                    break
+            if gameInfo:
+                return render_template('gameinfo.html', gameInfo=gameInfo)
+            else:
+                return f'Game com a ID {id} não foi encontrado.'
+        else:
+            return render_template('apigames.html', gameList=gameList)
+    
