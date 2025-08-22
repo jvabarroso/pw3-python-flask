@@ -1,0 +1,260 @@
+/* Estilos específicos da página info */
+
+/* Container principal */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Título principal */
+h3 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Seção da ONG */
+.ong-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  border-left: 5px solid #667eea;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.ong-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Nome da ONG */
+.ong-nome {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Seções de informação */
+.info-section {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #2196f3;
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(187, 222, 251, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.info-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(33, 150, 243, 0.25);
+}
+
+.info-section:hover::before {
+  opacity: 1;
+}
+
+/* Labels das informações */
+.info-label {
+  font-weight: 700;
+  color: #1976d2;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.info-label::before {
+  content: 'ℹ️';
+  font-size: 1.2rem;
+}
+
+/* Valores das informações */
+.info-value {
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  padding-left: 20px;
+}
+
+/* Seção do website */
+.website-section {
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  border: 2px solid #28a745;
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.website-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(40, 167, 69, 0.25);
+}
+
+.website-section .info-label::before {
+  content: '🌐';
+}
+
+/* Link do website */
+.website-link {
+  color: #28a745;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(40, 167, 69, 0.1);
+  border: 2px solid transparent;
+}
+
+.website-link:hover {
+  color: #218838;
+  background: rgba(40, 167, 69, 0.2);
+  border-color: #28a745;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+/* Botão voltar */
+.back-btn {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.back-btn::before {
+  content: '←';
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+.back-btn:hover {
+  background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(40, 167, 69, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  h3 {
+    font-size: 1.8rem;
+  }
+  
+  .ong-nome {
+    font-size: 1.5rem;
+  }
+  
+  .info-section,
+  .website-section {
+    padding: 15px;
+  }
+  
+  .info-label {
+    font-size: 1rem;
+  }
+  
+  .info-value {
+    font-size: 0.95rem;
+  }
+}
+
+/* Animações de entrada */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ong-section,
+.info-section,
+.website-section {
+  animation: slideInUp 0.6s ease forwards;
+}
+
+.ong-section { animation-delay: 0.1s; }
+.info-section:nth-child(3) { animation-delay: 0.2s; }
+.info-section:nth-child(4) { animation-delay: 0.3s; }
+.info-section:nth-child(5) { animation-delay: 0.4s; }
+.website-section { animation-delay: 0.5s; }
+.back-btn { animation-delay: 0.6s; }
+
+/* Efeitos de hover adicionais */
+.container:hover {
+  transform: scale(1.01);
+  transition: transform 0.3s ease;
+}
+
+/* Estilo para valores vazios */
+.info-value:empty::after {
+  content: 'Não informado';
+  color: #6c757d;
+  font-style: italic;
+}

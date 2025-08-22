@@ -2,98 +2,9 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalhes da ONG</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      margin: 20px;
-    }
-    
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    h3 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    
-    .ong-section {
-      background: #f9f9f9;
-      padding: 15px;
-      border-radius: 5px;
-      margin-bottom: 15px;
-      border-left: 3px solid #007bff;
-    }
-    
-    .ong-nome {
-      font-size: 20px;
-      font-weight: bold;
-      color: #007bff;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    
-    .info-section {
-      background: #e3f2fd;
-      padding: 15px;
-      border-radius: 5px;
-      margin-bottom: 15px;
-      border: 1px solid #2196f3;
-    }
-    
-    .info-label {
-      font-weight: bold;
-      color: #1976d2;
-      margin-bottom: 5px;
-    }
-    
-    .info-value {
-      color: #333;
-      font-size: 14px;
-    }
-    
-    .website-section {
-      background: #e8f5e8;
-      padding: 15px;
-      border-radius: 5px;
-      margin-bottom: 20px;
-      border: 1px solid #28a745;
-      text-align: center;
-    }
-    
-    .website-link {
-      color: #28a745;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    
-    .website-link:hover {
-      text-decoration: underline;
-    }
-    
-    .back-btn {
-      background: #28a745;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      display: inline-block;
-      text-align: center;
-      width: 100%;
-    }
-    
-    .back-btn:hover {
-      background: #218838;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}">
 </head>
 <body>
   <div class="container">
@@ -109,13 +20,13 @@
     </div>
     
     <div class="info-section">
-      <div class="info-label">Cidade:</div>
-      <div class="info-value">{{ detail.cidade or 'Não informado' }}</div>
+      <div class="info-label">Número de telefone:</div>
+      <div class="info-value">{{ detail.numOng or 'Não informado' }}</div>
     </div>
     
     <div class="info-section">
-      <div class="info-label">Estado:</div>
-      <div class="info-value">{{ detail.estado or 'Não informado' }}</div>
+      <div class="info-label">Email:</div>
+      <div class="info-value">{{ detail.email or 'Não informado' }}</div>
     </div>
     
     {% if detail.website %}

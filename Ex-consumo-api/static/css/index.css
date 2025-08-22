@@ -1,0 +1,162 @@
+/* Estilos específicos da página index */
+
+/* Container principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Título principal */
+h2 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Lista de ONGs */
+.ong-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Item individual da ONG */
+.ong-item {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  border-left: 5px solid #667eea;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ong-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ong-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border-left-color: #764ba2;
+}
+
+.ong-item:hover::before {
+  opacity: 1;
+}
+
+/* Nome da ONG */
+.ong-nome {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Localização da ONG */
+.ong-localizacao {
+  color: #6c757d;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ong-localizacao::before {
+  content: '📍';
+  font-size: 1.2rem;
+}
+
+/* Botão de detalhes */
+.ong-link {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.ong-link:hover {
+  background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .ong-item {
+    padding: 20px;
+  }
+  
+  .ong-nome {
+    font-size: 1.2rem;
+  }
+}
+
+/* Animações de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ong-item {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.ong-item:nth-child(1) { animation-delay: 0.1s; }
+.ong-item:nth-child(2) { animation-delay: 0.2s; }
+.ong-item:nth-child(3) { animation-delay: 0.3s; }
+.ong-item:nth-child(4) { animation-delay: 0.4s; }
+.ong-item:nth-child(5) { animation-delay: 0.5s; }

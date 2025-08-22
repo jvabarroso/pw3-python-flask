@@ -2,72 +2,19 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista de ONGs</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      margin: 20px;
-    }
-    
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    h2 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    
-    .ong-item {
-      background: #f9f9f9;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border-left: 3px solid #007bff;
-    }
-    
-    .ong-nome {
-      font-size: 18px;
-      font-weight: bold;
-      color: #007bff;
-      margin-bottom: 8px;
-    }
-    
-    .ong-localizacao {
-      color: #555;
-      margin-bottom: 10px;
-    }
-    
-    .ong-link {
-      background: #28a745;
-      color: white;
-      text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-size: 14px;
-    }
-    
-    .ong-link:hover {
-      background: #218838;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
   <div class="container">
     <h2>Organizações Não Governamentais</h2>
     
-    <ul style="list-style: none; padding: 0;">
+    <ul class="ong-list">
       {% for ong in previews %}
         <li class="ong-item">
           <div class="ong-nome">{{ ong.nome }}</div>
-          <div class="ong-localizacao">{{ ong.cidade }}, {{ ong.estado }}</div>
+          <div class="ong-localizacao">{{ ong.numOng }}, {{ ong.email }}</div>
           <a href="{{ url_for('ong_detail', id=ong.id) }}" class="ong-link">Ver detalhes</a>
         </li>
       {% endfor %}
