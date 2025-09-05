@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="card-mt-4">
+        <div class="card-header">
+            <h2>Login de Usuário</h2>
+        </div>
+        <div class="card-body">
+               <form action="">
+                <label>Nome</label>
+                <input type="text" class="form-control mb-2" name="nome" placeholder="Digite seu nome" required>
+                <label>Email:</label>
+                <input type="email" class="form-control mb-2" name="email" placeholder="Digite seu email" required>
+                <label>Senha:</label>
+                <input type="password" class="form-control mb-2" name="senha" placeholder="Digite sua senha" required>
+                <button class="btn btn-danger btn-block" type="submit">Entrar</button>
+               </form>
+               <hr>
+               <h6>Já possui conta? <a href="{{url_for('login')}}">Faça o login</a></h6>
+            </div>
+                </div>
+</div>
+
+
+{% endblock content%}
+
