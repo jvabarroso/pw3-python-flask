@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- Puxando a mensagem flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endwith %}
+
 <div class="container">
     <div class="card-mt-4">
         <div class="card-header">
             <h2>Login de Usuário</h2>
         </div>
         <div class="card-body">
-               <form action="">
+               <form action="{{url_for('cadUser')}}" method="POST">
                 <label>Nome</label>
                 <input type="text" class="form-control mb-2" name="nome" placeholder="Digite seu nome" required>
                 <label>Email:</label>

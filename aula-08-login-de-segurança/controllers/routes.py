@@ -1,7 +1,9 @@
-from flask import render_template, request, url_for, redirect
-from models.database import db, Game, Console
+from flask import render_template, request, url_for, redirect, flash
+from models.database import db, Game, Console, Usuario
 import urllib
 import json
+# Biblioteca para hash de  werkzeug.security
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Lista de jogadores
 jogadores = ['Miguel José', 'Miguel Isack', 'Leaf',
@@ -151,9 +153,33 @@ def init_app(app):
         # Rota de Login
     @app.route('/login', methods=['GET', 'POST'])
     def login():
+        if request.method == 'POST':
+            email = request.form['email']
+            senha = check_password_hash(request.form['senha'])
+            # Verificando se o usuário existe
+            user = Usuario.query.filter_by(email=email)
+            if user and check_password_hash(user.senha, senha):
+                flash('Login realizado com sucesso!')
+                return redirect(url_for('cadUser'))
         return render_template('login.html')
     
     @app.route('/CadUser', methods=['GET', 'POST'])
     def cadUser():
+        if request.method == 'POST':
+            nome = request.form['nome']
+            email = request.form['email']
+            senha = request.form['senha']
+            hash = generate_password_hash(senha, method='scrypt')
+            # Verificando se o usuário existe
+            user = Usuario.query.filter_by(email=email).first()
+            # Se o usuário existir e a senha estiver correta
+            if user and check_password_hash(user.senha, senha):
+                flash('Usuário já cadastrado! Faça o login', 'danger')
+                return redirect(url_for('cadUser'))
+            # Criando um novo usuário
+            newuser = Usuario(nome=nome, email=email, senha=hash)
+            db.session.add(newuser)
+            db.session.commit()
+            flash('Cadastro realizado com sucesso!', 'success')
         return render_template('CadUser.html')
     

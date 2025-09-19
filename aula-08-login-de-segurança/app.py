@@ -21,6 +21,9 @@ app.config['DATABASE_NAME'] = DB_NAME
 # Passando o endereço do banco ao Flask
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root:@localhost/{DB_NAME}'
 
+# Defiindo o segredo da sessão
+app.config  ['SECRET_KEY'] = 'theGamesSecret'
+
 # Iniciando o servidor no localhost, porta 5000, modo de depuração ativado
 if __name__ == '__main__':
     # Criando os dados de conexão:
