@@ -1,34 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Puxando a mensagem flash -->
+<!-- Puxando as FLASH MESSAGES -->
 {% with messages = get_flashed_messages(with_categories=true) %}
-  {% for category, message in messages %}
-    <div class="alert alert-{{ category }}">
-      {{ message }}
-    </div>
-  {% endfor %}
+    {% for category, message in messages %}
+        <div class="alert alert-{{category}}">{{message}}</div>
+    {% endfor %}
 {% endwith %}
 
 <div class="container">
-    <div class="card-mt-4">
-        <div class="card-header">
-            <h2>Cadastro de Usuário</h2>
-        </div>
-        <div class="card-body">
-               <form action="{{url_for('login')}}" method="POST">
+    <div class="card mt-4">
+        <div class="card-body m-auto">
+            <form action="{{url_for('login')}}" method="POST">
                 <label>Email:</label>
-                <input type="email" class="form-control mb-2" name="email" placeholder="Digite seu email" required>
+                <input type="email" name="email" class="form-control mb-2" placeholder="email@exemplo.com" required>
                 <label>Senha:</label>
-                <input type="password" class="form-control mb-2" name="senha" placeholder="Digite sua senha" required>
-                <button class="btn btn-danger btn-block" type="submit">Entrar</button>
-               </form>
-               <hr>
-               <h6>Não possui conta? <a href="{{url_for('cadUser')}}">Cadastre-se</a></h6>
-            </div>
-                </div>
+                <input type="password" name="senha" class="form-control mb-2" placeholder="Insira sua senha..." required>
+                <button type="submit" class="btn btn-danger btn-block w-100">Entrar</button>
+            </form>
+            <hr>
+            <h6>Não possui conta? <a href="{{url_for('caduser')}}">Cadastre-se!</a></h6>
+        </div>
+    </div>
 </div>
-
-
-{% endblock content%}
-
+{% endblock content %}
