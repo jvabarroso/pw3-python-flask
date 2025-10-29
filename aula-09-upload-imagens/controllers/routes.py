@@ -239,7 +239,7 @@ def init_app(app):
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash('Arquivo enviado com sucesso!', 'success')
             return redirect(url_for('galeria'))
-        return render_template('galeria.html')
+        return render_template('galeria.html', imagem=imagem)
     
     FILE_TYPES = set(['png', 'jpg', 'jpeg', 'gif'])
     def arquivos_permitidos(filename):
