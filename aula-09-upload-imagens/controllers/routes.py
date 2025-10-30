@@ -219,7 +219,7 @@ def init_app(app):
                 flash("Usuário cadastrado com sucesso! Você já pode fazer o login!" , "success")
                 return redirect(url_for('login'))
             
-        return render_template('caduser.html')
+        return render_template('cadUser.html')
     
     @app.route('/galeria', methods=['GET', 'POST'])
     def galeria():
