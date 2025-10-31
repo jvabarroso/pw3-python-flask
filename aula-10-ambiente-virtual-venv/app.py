@@ -1,8 +1,10 @@
 # Importando o Flask
-from flask import Flask
+from flask import Flask, render_template
+# Importando o PyMySQL
+import pymysql
 # Importando as rotas que estão nos controllers
 from controllers import routes
-import pymysql
+# Importando os models
 from models.database import db
 
 # Carregando o Flask na variável app
@@ -11,7 +13,8 @@ app = Flask(__name__, template_folder='views')
 # Chamando as rotas
 routes.init_app(app)
 
-DB_NAME = 'Ongs'
+# Define o nome do banco de dados
+DB_NAME = 'thegames'
 # Configura o Flask com o banco definido
 app.config['DATABASE_NAME'] = DB_NAME
 
@@ -19,7 +22,7 @@ app.config['DATABASE_NAME'] = DB_NAME
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root:@localhost/{DB_NAME}'
 
 # Defiindo o segredo da sessão
-app.config  ['SECRET_KEY'] = 'Ongs'
+app.config  ['SECRET_KEY'] = 'theGamesSecret'
 
 # Iniciando o servidor no localhost, porta 5000, modo de depuração ativado
 if __name__ == '__main__':
@@ -49,7 +52,9 @@ if __name__ == '__main__':
     # Criando as tabelas a partir do model
     with app.test_request_context():
         db.create_all()
+        
+    app.config['UPLOAD_FOLDER'] = 'static/uploads/'
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB
 
-# Inicializando a aplicação Flask
-if __name__ == '__main__':
+    # Inicializando a aplicação Flask
     app.run(host='localhost', port=5000, debug=True)

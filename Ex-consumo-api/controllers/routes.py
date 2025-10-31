@@ -1,8 +1,13 @@
 import urllib.request
 import json
-from flask import render_template
+from flask import render_template, request, redirect, url_for, flash
+import os
+from models.database import db, Imagem
+import uuid
 
 def init_app(app):
+    app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
     @app.route('/')
     def home():
@@ -10,6 +15,7 @@ def init_app(app):
 
     @app.route('/ongs')
     def ongs():
+        try:
             url = 'https://ongs-brasil.org/api/ongs'
             resp = urllib.request.urlopen(url, timeout=10)
             data = json.loads(resp.read())
@@ -22,6 +28,9 @@ def init_app(app):
                     'numOng': ong['phone_number'],
                     'email': ong['email']
                 })
+                
+        except:
+            previews = []
 
             return render_template('index.html', previews=previews)
 
@@ -51,3 +60,28 @@ def init_app(app):
                 }
 
             return render_template('info.html', detail=detail)
+        
+    @app.route('/galeria', methods=['GET', 'POST'])
+    def galeria():
+        imagem = Imagem.query.all()
+        if request.method == 'POST':
+            file = request.files['file']
+            if not arquivos_permitidos(file.filename):
+                flash('Tipo de arquivo não permitido.', 'danger')
+                return redirect(request.url)
+            
+            filename = str(uuid.uuid4())
+            
+            img = Imagem(filename)
+            db.session.add(img)
+            db.session.commit()
+            
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            flash('Arquivo enviado com sucesso!', 'success')
+            return redirect(url_for('galeria'))
+        return render_template('galeria.html', imagem=imagem)
+    
+    FILE_TYPES = set(['png', 'jpg', 'jpeg', 'gif'])
+    def arquivos_permitidos(filename):
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in FILE_TYPES
+    
